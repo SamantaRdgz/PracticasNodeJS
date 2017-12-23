@@ -1,19 +1,18 @@
-var EventEmitter = require('events').EventEmitter;
-var util = require('util');
+var Persona = require("./lib/Persona");
+var ben = new Persona("Ben");
+var george = new Persona("George");
 
-var Person = function(name) {
-	this.name = name;
-};
+george.on('habla', function(dijo) {
 
-util.inherits(Person, EventEmitter);
-
-var ben = new Person("Ben Franklin");
-
-ben.on('speak', function(said) {
-
-	console.log(`${this.name}: ${said}`);
+	console.log(`${this.nombre} : ${dijo}`);
 
 });
 
+ben.on('habla', function(dijo) {
 
-ben.emit('speak', "You may delay, but time will not.");
+	console.log(`${this.nombre}: ${dijo}`);
+
+});
+
+ben.emit('habla', "Soy Ben");
+george.emit('habla', "Soy Goerge");
