@@ -1,13 +1,26 @@
 var expect = require("chai").expect;
 var tools = require("../lib/tools");
 
-describe("printName()", function() {
+describe("Tools", function() {
 
-	it("should print the last name first", function() {
+	describe("printName()", function() {
+		it("should print the last name first", function() {
+			var results = tools.printName({ first: "Alex", last: "Banks"});
+			expect(results).to.equal("Banks, Alex");
+		});
+	});
 
-		var results = tools.printName({ first: "Alex", last: "Banks"});
+	describe("loadWiki()", function() {
 
-		expect(results).to.equal("Banks, Alex");
+		this.timeout(5000);
+
+		it("carga la pagina de lincoln de wiki", function(done) {
+			tools.loadWiki({ first: "Abraham", last: "Lincoln"}, function(html) {
+				expect(html).to.be.a.string;
+				done();			
+			});
+
+		});
 
 	});
 

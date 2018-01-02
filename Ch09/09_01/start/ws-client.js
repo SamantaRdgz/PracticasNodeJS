@@ -1,6 +1,17 @@
+var ws = new WebSocket("ws://localhost:3000");
+ws.onopen = function() {
+	setTitle("conectado");
+};
+ws.onclose = function() {
+	setTitle("desconectado");
+};
+ws.onmessage = function(payload) {
+	printMessage(payload.data);
+};
 
 document.forms[0].onsubmit = function () {
     var input = document.getElementById('message');
+    ws.send(input.value);
     input.value = '';
 };
 

@@ -1,11 +1,9 @@
 var ws = new WebSocket("ws://localhost:3000");
-
 ws.onopen = function() {
-	setTitle("Connected to Cyber Chat");
+	setTitle("conectado");
 };
-
 ws.onclose = function() {
-	setTitle("DISCONNECTED");
+	setTitle("desconectado");
 };
 
 ws.onmessage = function(payload) {
